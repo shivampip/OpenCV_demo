@@ -14,12 +14,14 @@ while(True):
     #for (ex, ey, ew, eh) in eyes:
     #    cv2.rectangle(img, (ex, ey), (ex+ew, ey+eh), (255, 255, 0), 5)
 
-    if(eyes is not None):
+    if(len(eyes)>0):
         eye= eyes[0]
         (ex, ey, ew, eh) = eye
+        ex= ex+ round(ew/2)
+        ey= ey+ round(eh/2)
         path.append([ex, ey])
-        pts= np.array(path, np.int32)
-        cv2.polylines(img, [pts], False, (255, 255, 0), 5)
+    pts= np.array(path, np.int32)
+    cv2.polylines(img, [pts], False, (255, 255, 0), 5)
 
 
     cv2.imshow("eyes", img)
